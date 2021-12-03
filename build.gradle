@@ -1,5 +1,4 @@
 plugins {
-//    id 'java'
     id 'application'
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -18,20 +17,18 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.springframework:spring-test:2.5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'org.hsqldb:hsqldb:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 application {
-    mainClass = 'demo.App'
+    mainClass = 'com.kofi.app.StartApp'
 }
 
 test {
     useJUnit()
-//    useJUnitPlatform()
 }
-
-//tasks.named('test') {
-//    useJUnitPlatform()
-//}

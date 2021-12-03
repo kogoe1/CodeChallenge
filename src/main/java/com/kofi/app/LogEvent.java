@@ -2,11 +2,11 @@ package com.kofi.app;
 
 public class LogEvent {
 
-    private  String id;
-    private  String state;
-    private  long timestamp;
-    private  String type;
-    private  String host;
+    private String id;
+    private String state;
+    private long timestamp;
+    private String type;
+    private String host;
 
     public LogEvent(String id, String state, String timestamp, String type, String host) {
         this.id = id;

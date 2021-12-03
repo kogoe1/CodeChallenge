@@ -1,24 +1,24 @@
 package com.kofi.app;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "EventData")
 public class EventData {
+    private static final long DURATION_THRESHOLD_MILLIS = 4;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  long id;
+    private long id;
     private String eventId;
-    private  long duration;
-    private  String type;
-    private  String host;
-
-    private static final long DURATION_THRESHOLD_MILLIS = 4;
+    private long duration;
+    private String type;
+    private String host;
+    private boolean isAlerted;
 
     //Added for JPA use
-    protected EventData(){}
+    protected EventData() {
+    }
 
     public EventData(String eventId, long duration, String type, String host) {
         this.eventId = eventId;
@@ -50,8 +50,4 @@ public class EventData {
     public boolean getIsAlerted() {
         return duration > DURATION_THRESHOLD_MILLIS;
     }
-
-//    public void setId(long id) {
-//        this.id = id;
-//    }
 }

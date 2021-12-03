@@ -12,10 +12,10 @@ public class EventDataTest {
     private String eventId;
     private String type;
     private String host;
-    private  int duration = 4;
+    private int duration = 4;
 
     @Before
-    public void init(){
+    public void init() {
         eventId = "abcd";
         type = "APPLICATION_LOG";
         host = "12345";
@@ -23,7 +23,7 @@ public class EventDataTest {
     }
 
     @Test
-    public void testHasAllFieldsAndIsAlertingEvent (){
+    public void testHasAllFieldsAndIsAlertingEvent() {
         int duration = 10;
 
         EventData eventData = new EventData(eventId, duration, type, host);
@@ -36,7 +36,7 @@ public class EventDataTest {
     }
 
     @Test
-    public void testHasAllFieldsAndIsNotAlertingEvent (){
+    public void testHasAllFieldsAndIsNotAlertingEvent() {
         EventData eventData = new EventData(eventId, duration, type, host);
 
         assert (eventData.getEventId().equals(eventId));

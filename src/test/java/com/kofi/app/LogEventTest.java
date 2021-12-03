@@ -16,7 +16,7 @@ public class LogEventTest {
     private long timestampMillis;
 
     @Before
-    public void init(){
+    public void init() {
         id = "abcd";
         state = "STARTED";
         timestamp = "1491377495212";
@@ -24,7 +24,7 @@ public class LogEventTest {
     }
 
     @Test
-    public void testAllFieldsArePopulated(){
+    public void testAllFieldsArePopulated() {
         String type = "APPLICATION_LOG";
         String host = "12345";
 
@@ -38,7 +38,7 @@ public class LogEventTest {
     }
 
     @Test
-    public void testAllFieldsArePopulatedExceptTypeAndHost(){
+    public void testAllFieldsArePopulatedExceptTypeAndHost() {
         String type = "";
         String host = "";
 

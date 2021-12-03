@@ -10,9 +10,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LogParser {
-    private static final Logger logger = LoggerFactory.getLogger(LogParser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogParser.class);
 
     private final String filename;
 
@@ -22,22 +23,29 @@ public class LogParser {
 
     public List<LogEvent> parseJSON() throws IOException {
         List<LogEvent> logEventList = new ArrayList<>();
-        File logfile = new File(filename);
-        logger.info("log file " + filename + " has been passed");
-        if (logfile.exists() && logfile.canRead()){
-            logger.info("Log file Successfully opened for processing");
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-            String lineRead;
-            while ((lineRead = bufferedReader.readLine()) != null){
-                Gson gsonObject = new Gson();
-                LogEvent logEvent = gsonObject.fromJson(lineRead, LogEvent.class);
-                logEventList.add(logEvent);
+
+        if (Objects.nonNull(filename)) {
+            File logfile = new File(filename);
+
+            LOGGER.info("log file " + filename + " has been passed");
+            if (logfile.exists() && logfile.canRead()) {
+                LOGGER.info("Log file Successfully opened for processing");
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+                String lineRead;
+                while ((lineRead = bufferedReader.readLine()) != null) {
+                    Gson gsonObject = new Gson();
+                    LogEvent logEvent = gsonObject.fromJson(lineRead, LogEvent.class);
+                    logEventList.add(logEvent);
+                }
+            } else {
+                LOGGER.debug("Passed file is" + filename);
+                LOGGER.error("Log file" + filename + " does not exist or cannot be read");
+                LOGGER.info("Log file" + filename + " does not exist or cannot be read");
             }
         } else {
-            logger.debug("Passed file is" + filename);
-            logger.error("Log file" + filename + " does not exist or cannot be read");
-            logger.info("Log file" + filename + " does not exist or cannot be read");
+            LOGGER.error("No log file was passed");
         }
+
         return logEventList;
     }
 
